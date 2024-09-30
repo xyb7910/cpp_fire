@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 
 const int N = 110;
@@ -22,10 +23,8 @@ int main() {
 		sum += score[i];
 	}
 	average = sum / (n - 2);
-	cout << average << endl;
+	cout << fixed << setprecision(2) << average << endl;
 
-	for (int i = n - 2; i > 0; i -- ) 
-		cout << score[i] << " ";
 	return 0;
 }
 

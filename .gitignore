@@ -12,6 +12,7 @@ cmake_install.cmake
 # 忽略所有编译生成的二进制文件
 bin/
 obj/
+test_data/
 
 # 忽略所有临时和日志文件
 *.log

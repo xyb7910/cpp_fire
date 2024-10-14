@@ -14,11 +14,10 @@ bool LeapYear(int year) {
 	if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) return true;
 	return false;
 }
-
 // 判断素数
 bool is_prime(int x) {
 	if (x < 2) return false;
-	for (int i = 2; i < x / i; i ++)
+	for (int i = 2; i <= x / i; i ++)
 		if(x % i == 0) return false;
 	return true;
 }
@@ -116,9 +115,6 @@ vector<int> get_divisors(int n) {
 int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
-
-// (a, b) = (ka + b, a) = (a, ka + b)
-// (64, 14)  = (64 % 14, 14)
 
 
 int main() {

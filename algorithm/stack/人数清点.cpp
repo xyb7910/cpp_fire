@@ -26,6 +26,6 @@ int main() {
 		// 栈顶的元素大于当前元素的时候直接入栈
 		s[++ tt] = i;
 	}
-	cout << ans + 1 << endl;
+	cout << ans << endl;
 	return 0;
 }

@@ -9,7 +9,7 @@ typedef long long LL;
 
 int main() {
 	ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-	int T; // 询问次数
+	int T; 
     cin >> T;
     
     while (T--) {
@@ -18,15 +18,10 @@ int main() {
         
         vector<int> l(N), r(N);
         
-        // 读取li
-        for (int i = 0; i < N; ++i) {
-            cin >> l[i];
-        }
+        for (int i = 0; i < N; ++i) cin >> l[i];
         
         // 读取ri
-        for (int i = 0; i < N; ++i) {
-            cin >> r[i];
-        }
+        for (int i = 0; i < N; ++i) cin >> r[i];
         
         bool possible = true;
         int prev = r[N-1]; // 最后一天的最大值

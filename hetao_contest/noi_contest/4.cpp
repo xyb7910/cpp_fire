@@ -1,13 +1,15 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 const int N = 1e5 + 10;
 typedef long long LL;
 
 bool check(LL n) {
-	if(n % 2 == 1 || n % 4 == 0) return true;
+	// n = abs(n);
+	if(n > 4 && n % 4 == 0 || n & 1 == 1) return true;
 	return false;
 }
 

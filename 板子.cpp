@@ -7,19 +7,32 @@ using namespace std;
 const int N = 1e5 + 10;
 typedef long long LL;
 int cnt;
-
+int primes[N];
+bool st[N];
 
 // 判断闰年
 bool LeapYear(int year) {
 	if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0) return true;
 	return false;
 }
+
 // 判断素数
 bool is_prime(int x) {
 	if (x < 2) return false;
 	for (int i = 2; i <= x / i; i ++)
 		if(x % i == 0) return false;
 	return true;
+}
+
+// 埃氏筛选质数
+void get_primes(int n) {
+    for (int i = 2; i <= n; i ++) {
+        if(!st[i]) {
+            primes[cnt ++] = i;
+            for (int j = 2 * i; j <= n; j += i)
+                st[j] = true;
+        }
+    }
 }
 
 // 判断回文数字
@@ -115,6 +128,7 @@ vector<int> get_divisors(int n) {
 int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
+
 
 
 int main() {

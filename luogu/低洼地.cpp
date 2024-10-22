@@ -14,19 +14,29 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
+// const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-
 void solved() {
 	/* your code */
-	int N;
-	std::cin >> N;
-	std::vector<int> h(N, 0);
-	for (auto& i: h) std::cin >> h[i];
-	
+	int N, start, k = 0, ans = 0;
+	std::cin >> N >> start;
+	N --;
+	while(N --) {
+		int cur;
+		std::cin >> cur;
+		if (cur < start) {
+			k = 1;
+		}
+		if(cur > start && k) {
+			ans ++;
+			k = 0;
+		}
+		start = cur;
+	}
+	std::cout << ans << std::endl;
 }
 
 int main() {

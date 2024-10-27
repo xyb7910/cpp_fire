@@ -19,10 +19,22 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
+int s[N];
+int tt = 0;
 
 void solved() {
 	/* your code */
-	
+	string str;
+	std::cin >> str;
+	for (int i = 0; i < str.size(); i ++) {
+		if(str[i] == '(') {
+			s[++ tt] = i;
+		} 
+		if(str[i] == ')') {
+			cout << s[tt] << " ";
+			tt --;
+		}
+	}
 }
 
 int main() {

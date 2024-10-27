@@ -13,7 +13,8 @@ int main() {
 	cin >> n;
 	for (int i = 1; i <= n; i ++) cin >> a[i];
 
-	for (int i = 1; i <= n; i ++) {
+	a[n + 1] = 0x3f3f3f3f;
+	for (int i = 1; i <= n + 1; i ++) {
 		// 如果栈顶的元素小于当前位置的元素则进行出栈
 		while(tt && a[s[tt]] <= a[i]) {
 			// 取出栈顶元素

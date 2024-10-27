@@ -18,11 +18,18 @@ const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-
-
+int n;
+int d[N];
 void solved() {
 	/* your code */
-	
+	std::cin >> n;
+	for (int i = 0; i < n - 1; i ++) {
+		int a, b;
+		std::cin >> a >> b;
+		d[min(a, b)] ++;
+		// std::cout << min(a, b) <<" "<< d[min(a, b)] << endl;
+	}
+	for (int i = 1; i <= n; i ++) cout << d[i] << " ";
 }
 
 int main() {

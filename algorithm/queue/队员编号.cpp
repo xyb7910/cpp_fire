@@ -20,9 +20,21 @@ int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
 
+
 void solved() {
 	/* your code */
-	
+	int x, y;
+	std::cin >> x >> y;
+	int t;
+	std::cin >> t;
+	int res1 = -1, res2 = -1;
+	for (int i = 0; i < t; i ++) {
+		res1 = (res1 + 1) % x;
+		res2 = (res2 + 1) % y;
+
+		std::cout << res1 + 1 << " " << res2 + 1 << std::endl;
+	}
+
 }
 
 int main() {

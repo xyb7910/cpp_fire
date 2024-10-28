@@ -1,7 +1,9 @@
 # 忽略所有 .o, .exe, .out 文件
 *.o
 *.exe
+*.exec
 *.out
+*.
 
 # 忽略所有 CMake 和 Makefile 生成的文件
 CMakeFiles/

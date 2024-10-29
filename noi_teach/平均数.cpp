@@ -21,26 +21,11 @@ int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
 
-void simple(int n, int k) {
-	std::vector<int> vist(n, 0);
-	int now = -1;
-	for (int i = 0; i < n; i ++) {
-		int cnt = k;
-		while(cnt --) {
-			do {
-				now = (now + 1) % n;
-			} while(vist[now]); // 当条件为真的时候，继续返回之行 do 语句块
-		}
-		std::cout << now + 1 << " ";
-		vist[now] = 1;
-	}
-}
-
 void solved() {
     /* your code */
-    int n, k;
-    std::cin >> n >> k;
-    simple(n, k);
+    double a, b, c;
+    cin >> a >> b >> c;
+    printf("%.3lf\n", (a + b + c) / 3);
 }
 
 int main() {

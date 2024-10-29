@@ -15,32 +15,29 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
+const int N = 1e6 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-
-
-void simple(int n, int k) {
-	std::vector<int> vist(n, 0);
-	int now = -1;
-	for (int i = 0; i < n; i ++) {
-		int cnt = k;
-		while(cnt --) {
-			do {
-				now = (now + 1) % n;
-			} while(vist[now]); // 当条件为真的时候，继续返回之行 do 语句块
-		}
-		std::cout << now + 1 << " ";
-		vist[now] = 1;
-	}
-}
+int v[N];
 
 void solved() {
     /* your code */
-    int n, k;
-    std::cin >> n >> k;
-    simple(n, k);
+    LL n;
+    std::cin >> n;
+    for (LL i = 1; i <= n; i ++) {
+    	LL a;
+    	std::cin >> a;
+    	v[a] ++;
+    }
+    LL maxn = 0, ans = 0;
+    for (LL i = 1; i <= 4001; i ++) {
+    	LL sum = 0;
+    	for (LL j = 1; j <= i; j ++) sum += min(v[j], v[i - j]);
+    	if(maxn == sum) ans ++;
+    	if(sum > maxn) maxn = sum, ans = 1;
+    }
+    std::cout << maxn / 2 << " " << ans << std::endl;
 }
 
 int main() {

@@ -19,42 +19,33 @@ const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-
+char s[N], k[N];
 void solved() {
     /* your code */
-    string s;
     cin >> s;
-    int l = s.length() - 1;
-
+    int l = strlen(s) - 1;
+    char k[l + 1];
     // 特判：如果全为9，则输出"100...0"形式的下一个回文数
     int i = 0;
-    while (s[i] == '9') {
-        if (i == l) {
-            s = "1";
-            for (int j = 1; j <= l + 1; ++j) {
-                s += "0";
-            }
-            break;
+    while (s[i ++] == '9') {
+        if (i == l + 1) {
+            for (s[0] = '1', l ++; i > 0; i --)
+                s[i] = '0';
         }
-        ++i;
     }
 
     // 创建回文数
-    string k = s;
-    reverse(k.begin(), k.end());
+    for (i = 0; i <= l - i; i ++)
+        k[i] = k[l - i] = s[i];
 
     // 如果生成的回文数小于等于原数，则需要将中间的字符加1
-    if (k <= s) {
-        i = l / 2;  // 中间位置
-        while (k[i] == '9') {
-            --i;  // 处理进位
+    if (strcmp(k, s) <= 0) {
+        while(k[-- i] == '9') {
+            k[i] = k[l - i] = ++ k[i];
         }
-        k[i] = char(int(k[i]) + 1);  // 加1
-        ++i;
-        while (i <= l / 2) {  // 将后面的字符设置为0
-            k[i] = '0';
-            k[l - i] = '0';
-            ++i;
+        i ++;
+        for (i; i <= l - i; i ++) {
+            k[i] = k[l - i] = '0';
         }
     }
 

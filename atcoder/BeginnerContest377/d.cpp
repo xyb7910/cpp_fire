@@ -14,14 +14,31 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
+const int N = 2e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-
-
+int n, m;
+int f[N];
 void solved() {
 	/* your code */
+    cin >> n >> m;
+    for (int i = 0; i <= m; i ++) f[i] = 1;
+    while(n --) {
+        int l, r ;
+        cin >> l >> r;
+        f[r] = max(f[r], l + 1);
+    }
+
+    for (int i = 1; i <= m; i ++) {
+        f[i] = max(f[i], f[i - 1]);
+    }
+
+    LL res = 0;
+    for (int i = 1; i <= m; i ++) {
+        res += i - f[i] + 1;
+    }
+    cout << res << endl;
 }
 
 int main() {

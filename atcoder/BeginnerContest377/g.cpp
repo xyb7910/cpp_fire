@@ -22,6 +22,7 @@ int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1}
 
 void solved() {
 	/* your code */
+    
 }
 
 int main() {

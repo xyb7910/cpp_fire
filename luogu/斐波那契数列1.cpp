@@ -19,9 +19,28 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
+long long fibonacci(int n) {
+    if (n <= 0) return 0;
+    if (n == 1) return 1;
+
+    long long prev = 0;   
+    long long curr = 1;   
+    long long next;
+
+    for (int i = 2; i <= n; ++i) {
+        next = prev + curr;   
+        prev = curr;         
+        curr = next;          
+    }
+
+    return curr;   
+}
 
 void solved() {
 	/* your code */
+	int n;
+	cin >> n;
+	cout << fibonacci(n - 1);
 }
 
 int main() {

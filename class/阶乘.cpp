@@ -19,9 +19,16 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
+int fatc(int n) {
+    if(n == 1) return 1;
+    return n * fatc(n - 1);
+}
 
 void solved() {
-	/* your code */
+    /* your code */
+    int n;
+    cin >> n;
+    cout << fatc(n) << endl;
 }
 
 int main() {

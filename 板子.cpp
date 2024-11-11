@@ -129,7 +129,21 @@ int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
 
+// 树状数组
+struct fenwick{
+    #define lowbit(x) ((x) & (-(x)))
+    int tr[N];
 
+    void add(int x, int c) {
+        for (int i = x; i <= N; i += lowbit(i)) tr[i] += c;
+    }
+
+    int query(int x) {
+        LL res = 0;
+        for (int i = x; i; i -= lowbit(i)) res += tr[i];
+        return res;
+    }
+}
 
 int main() {
 	ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);

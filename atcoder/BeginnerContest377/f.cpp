@@ -30,16 +30,18 @@ void solved() {
         cin >> x >> y;
         hori.insert(x);
         vert.insert(y);
-        diag.insert(x - y);
-        anti_diag.insert(x + y);
+        diag.insert(x - y); // x - y = d
+        anti_diag.insert(x + y); // x + y = d
     }
 
     LL ans = (LL)(n - hori.size()) * (n - vert.size());
 
     // 加入主对角线之后，考虑会有多少个新增加的不能放棋子的位置
     for (auto d : diag) {
-        set<int> cross_x;
+        set<int> cross_x; // 所有交点的x坐标（因为要去重）
         for (auto x : hori) {
+            // 枚举每一条水平线，看看它是否和对角线 d 相交与否
+            // d = x - y ==> y = x - d
             int y = x - d;
             if(1 <= y && y <= n) {
                 cross_x.insert(x);
@@ -47,14 +49,16 @@ void solved() {
         }
 
         for (auto y : vert) {
-            int x = d + y;
+            // 枚举每一条垂直线，看看它和对角线 d 相交与否
+            int x = d + y; // x = d + y
             if(1 <= x && x <= n) {
                 cross_x.insert(x);
             }
         }
 
         int cross_num = cross_x.size();
-        int d_len = n - abs(d);
+        // 枚举每一条对角线的长度
+        int d_len = n - abs(d); // n - |d|
         ans -= d_len - cross_num;
     }
 
@@ -86,6 +90,7 @@ void solved() {
             } 
         }
         int cross_num = cross_x.size();
+        // 副对角线的长度
         int e_len = n - abs(e - (n + 1));
         ans -= e_len - cross_num;
     }

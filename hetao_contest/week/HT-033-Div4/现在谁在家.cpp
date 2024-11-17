@@ -9,13 +9,13 @@ void printStatus(bool isHome) {
 }
 
 bool isQingChengHome(int day, int hour) {
-    return !((day == 1 || day == 4 || day == 5 || day == 6 || day == 7) && (hour >= 10 && hour < 19) ||
-             (day == 2 || day == 3) && (hour >= 14 && hour < 17));
+    return !((day == 1 || day == 4 || day == 5 || day == 6 || day == 7) && (hour >= 10 && hour <= 19) ||
+             (day == 2 || day == 3) && (hour >= 14 && hour <= 17));
 }
 
 bool isJiangBingHome(int day, int hour) {
-    return !((day >= 1 && day <= 5) && (hour >= 10 && hour < 19) ||
-             ((day == 1 || day == 2 || day == 4 || day == 5 || day == 6) && (hour >= 19 && hour < 22)));
+    return !((day >= 1 && day <= 5) && (hour >= 10 && hour <= 19) ||
+             ((day == 1 || day == 2 || day == 4 || day == 5 || day == 6) && (hour >= 19 && hour <= 22)));
 }
 
 int main() {

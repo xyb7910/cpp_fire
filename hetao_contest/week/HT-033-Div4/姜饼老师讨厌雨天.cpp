@@ -1,30 +1,42 @@
 #include <iostream>
-#include <vector>
+#include <cstring>
 #include <algorithm>
+#include <cmath>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
 
-int maxSubArraySum(const std::vector<int>& nums) {
-    int maxSoFar = nums[0];
-    int currentMax = nums[0];
+#define x first
+#define y second
 
-    for (size_t i = 1; i < nums.size(); ++i) {
-        currentMax = std::max(nums[i], currentMax + nums[i]);
-        maxSoFar = std::max(maxSoFar, currentMax);
-    }
+using namespace std;
+typedef long long LL;
+typedef pair<int, int> PII;
+typedef pair<double, double> PDD;
+const int N = 1e5 + 10;
+int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
+int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-    return maxSoFar;
+int a[N];
+LL minv = 0;
+void solved() {
+	/* your code */
+	int n;
+	cin >> n;
+	for (int i = 1; i <= n; i ++) cin >> a[i];
+	LL ans = a[1], sum = 0;
+	for (int i = 1; i <= n; i ++) {
+		sum += a[i];
+		ans = max(ans, sum - minv);
+		minv = min(minv, sum);
+	}
+	cout << ans << endl;
 }
 
 int main() {
-    int n;
-    std::cin >> n; // 读取天数
-
-    std::vector<int> moodValues(n);
-    for (int i = 0; i < n; ++i) {
-        std::cin >> moodValues[i]; // 读取心情值
-    }
-
-    // 计算并输出最大的心情值总和
-    std::cout << maxSubArraySum(moodValues) << std::endl;
-
+    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
+    solved();
     return 0;
 }

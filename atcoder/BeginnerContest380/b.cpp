@@ -20,7 +20,6 @@ int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
 string s;
-
 void solved() {
 	/* your code */
 	cin >> s;
@@ -29,11 +28,7 @@ void solved() {
 		if(s[i] == '|') {
 			cout << cnt << " ";
 			cnt = 0;
-		} else {
-			cnt ++;
-			// cout << (cnt ? cnt : 0) << " ";
 		}
-
 	}
 }
 

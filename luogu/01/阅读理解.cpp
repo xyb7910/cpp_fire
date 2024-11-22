@@ -2,13 +2,12 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
+#include <bitset>
 using namespace std;
-
-const int N = 3e6 + 10;
-int n, m, idx;	
-int son[N][26], pos[N][10];
-char s[30];
-
+int n, m, idx;
+char s[1001];
+int son[300007][26];
+bitset<1001> pos[500007];
 inline void insert(char str[], int id) {
 	int p = 0;
 	for (int i = 0; str[i]; i ++) {
@@ -18,7 +17,6 @@ inline void insert(char str[], int id) {
 	}
 	pos[p][id] = 1;
 }	
-
 inline void query(char str[]) {
     int p = 0;
     for (int i = 0; str[i]; i++) {
@@ -29,7 +27,6 @@ inline void query(char str[]) {
         }
         p = son[p][u];
     }
-
     bool has_output = false; // 标记是否有输出
     for (int i = 1; i <= n; i++) {
         if (pos[p][i]) {
@@ -42,7 +39,6 @@ inline void query(char str[]) {
     }
     cout << endl;
 }
-
 int main() {
     cin >> n;
 	for (int i = 1; i <= n; i ++) {

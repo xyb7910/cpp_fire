@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int N = 1e3 + 10, M = 2 * N;
+const int N = 1e3 + 10, M = 1e5 + 10;
 
 int n, m, s, t;
 int p[N];

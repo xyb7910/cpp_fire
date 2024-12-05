@@ -19,7 +19,7 @@ std::vector<int> get_primes(int n) {
 	return primes;
 }
 
-std::vector<int> getrimes(int n) {
+std::vector<int> getPrimes(int n) {
     std::vector<bool> isPrime(n + 1, true); // 如果对应的 i 是true，则表明 i 是质数
     std::vector<int> primes; // 存储所有的 1 ～ n 的质数
     isPrime[0] = isPrime[1] = false;

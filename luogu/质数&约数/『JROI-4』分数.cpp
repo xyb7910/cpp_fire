@@ -14,31 +14,36 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
+const int N = 2e6 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-vector<int> div(LL n) {
-	std::vector<int> factors;
-	for (LL i = 2; i <= n / i; i ++) {
-		while(n % i == 0) {
-			factors.push_back(i);
-			n /= i;
+int primes[N];
+int cnt;
+bool st[N];
+
+void get_primes(int n) {
+	for (int i = 2; i <= n; i ++) {
+		if(!st[i]) primes[cnt ++] = i;
+		for (int j = 0; primes[j] * i <= n; j ++) {
+			st[primes[j] * i] = 1;
+			if(i % primes[j] == 0) break;
 		}
 	}
-	if(n > 1) factors.push_back(n);
-	return factors;
 }
 
 void solved() {
 	/* your code */
 	int n; cin >> n;
+	get_primes(N);
 	while(n --) {
-		LL num; cin >> num;
-		std::vector<int> factors = div(num);
-		for (auto f : factors) cout << f << " ";
-		cout << endl;
+		int num; cin >> num;
+		for (int i = num; i; i --)
+			if(!st[i]) {
+				cout <<  i << endl;
+				break;
+			}
 	}
 }
 

@@ -19,27 +19,18 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-vector<int> div(LL n) {
-	std::vector<int> factors;
-	for (LL i = 2; i <= n / i; i ++) {
-		while(n % i == 0) {
-			factors.push_back(i);
-			n /= i;
-		}
-	}
-	if(n > 1) factors.push_back(n);
-	return factors;
+bool is_prime(int x) {
+	if(x < 2) return false;
+	for (int i = 2; i <= x / i; i ++)
+		if(x % i == 0) return false;
+	return true;
 }
 
 void solved() {
 	/* your code */
-	int n; cin >> n;
-	while(n --) {
-		LL num; cin >> num;
-		std::vector<int> factors = div(num);
-		for (auto f : factors) cout << f << " ";
-		cout << endl;
-	}
+	int n, k; cin >> n >> k;
+	if(is_prime(k + 1) && k * 2 >= n) cout << 1 << endl;
+	else cout << 2 << endl;
 }
 
 int main() {

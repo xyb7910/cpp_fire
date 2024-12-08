@@ -1,43 +1,42 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-
-// Function to use the Sieve of Eratosthenes to find all primes in a given range [L, R]
-int sieveOfEratosthenes(int L, int R) {
-    std::vector<bool> prime(R + 1, true); // Initialize all entries as true
-    int sqrt_R = std::sqrt(R);
-    int prime_count = 0;
-
-    // Special case for 0 and 1
-    if (L <= 1) prime[0] = false;
-    if (L <= 2 && R >= 2) prime_count++;
-
-    // Sieve of Eratosthenes
-    for (int p = 2; p <= sqrt_R; ++p) {
-        if (prime[p]) {
-            for (int i = p * p; i <= R; i += p) {
-                prime[i] = false;
+#include<bits/stdc++.h>
+using namespace std;
+bool f[100005];
+int prime[10000],tot;
+bool flag[1000005];
+void Euler(int n)
+{
+     f[0]=f[1]=true;
+        for(int i=2;i<=n;i++)
+        {
+            if(!f[i])
+            {
+                prime[++tot]=i;
             }
-            // If p is greater than L, it's a prime in the range
-            if (p >= L) prime_count++;
+            for(int j=1;j<=tot&&1ll*i*prime[j]<=n;j++)
+            {
+                f[i*prime[j]]=true;
+                if(i%prime[j]==0)break;
+            }
+        }
+}
+int main()
+{
+    Euler(100000);
+    long long l,r;
+    cin>>l>>r;
+    for(long long i=1;i<=tot&&prime[i]*prime[i]<=r;i++){
+        long long L=(l+prime[i]-1)/prime[i]*prime[i];
+        L=max(2ll*prime[i],L);
+        for(long long j=L;j<=r;j+=prime[i]){
+            flag[j-1]=true;
         }
     }
-
-    // Count the primes in the range [L, R]
-    for (int p = L; p <= R; ++p) {
-        if (prime[p]) prime_count++;
+    int cnt=0;
+    for(long long i=max(2ll,l);i<=r;i++){
+        if(!flag[i-l]){
+            cnt++;
+        }
     }
-
-    return prime_count;
-}
-
-int main() {
-    int L, R;
-    std::cin >> L >> R;
-
-    int prime_count = sieveOfEratosthenes(L, R);
-
-    std::cout << prime_count << std::endl;
-
+    cout<<cnt;
     return 0;
 }

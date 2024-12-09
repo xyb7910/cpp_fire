@@ -19,27 +19,38 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int cnt[N], cow[N];
-void solved() {
-	/* your code */
-	int n; cin >> n;
-	for (int i = 1; i <= n; i ++) {
-		int num; cin >> num;
-		cnt[num] ++;
-		cow[i] = num;
-	}
-	
-	for (int i = 1; i <= n; i ++) {
-		LL res = -1;
-		for (int j = 1; j <= cow[i] / j; j ++) {
-			if(cow[i] % j == 0) {
-				res += cnt[j] + cnt[cow[i] / j];
-				if(j == cow[i] / j) res -= cnt[j];
-			}
+int primes[N], phi[N];
+bool st[N];
+int cnt;
+
+LL get_eulars(int  n) {
+	phi[1] = 1;
+	for (int i = 2; i <= n; i ++) {
+		if(!st[i]) {
+			primes[cnt ++] = i;
+			phi[i] = i - 1;
 		}
-		cout << res << endl;
+		for (int j = 0; primes[j] * i <= n; j ++) {
+			st[primes[j] * i] = 1;
+			if(i % primes[j] == 0) {
+				phi[i * primes[j]] = primes[j] * phi[i];
+				break;	
+			}
+			phi[primes[j] * i] = phi[i] * (primes[j] - 1);
+		}
 	}
 
+	LL res = 0;
+	for (int i = 1; i <= n; i ++) res += phi[i];
+
+	return res;
+}
+
+void solved() {
+	/* your code */
+	// 给定一个正整数 n，求 1∼n 中每个数的欧拉函数之和。
+	int n; cin >> n;
+	cout << get_eulars(n) << endl;
 }
 
 int main() {

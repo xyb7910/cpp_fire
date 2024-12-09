@@ -1,37 +1,48 @@
-#include <cstdio>
-#include <cstring>
 #include <iostream>
+#include <cstring>
 #include <algorithm>
+#include <cmath>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <queue>
+
+#define x first
+#define y second
 
 using namespace std;
-
-int gcd(int a, int b)
-{
+typedef long long LL;
+typedef pair<int, int> PII;
+typedef pair<double, double> PDD;
+const int N = 1e5 + 10;
+int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
+int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
+int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
+int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
 
-int main()
-{
-    int A, B, L;
-    cin >> A >> B >> L;
-
+void solved() {
+    /* your code */
+    int A, B, L; cin >> A >> B >> L;
     int a, b;
-    double delta = 1e9;
-    for (int i = 1; i <= L; i ++ )
-        for (int j = 1; j <= L; j ++ )
-            if (gcd(i, j) == 1)
-            {
+    double delta = 1e9, X = A * 1.0 / B;
+    for (int i = 1; i <= L; i ++) {
+        for (int j = 1; j <= L; j ++) {
+            if(gcd(i, j) == 1) {
                 double x = i * 1.0 / j;
-                double X = A * 1.0 / B;
-
-                if (x >= X && x - X < delta)
-                {
+                if(x >= X && x - X < delta) {
                     delta = x - X;
                     a = i, b = j;
                 }
             }
+        }
+    }
+    cout << a << " " << b;
+}
 
-    cout << a << ' ' << b << endl;
-
+int main() {
+    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
+    solved();
     return 0;
 }

@@ -14,36 +14,29 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e6 + 10;
+const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int cnt[N], cow[N];
+
 void solved() {
 	/* your code */
-	int n; cin >> n;
-	for (int i = 1; i <= n; i ++) {
-		int num; cin >> num;
-		cnt[num] ++;
-		cow[i] = num;
-	}
-	
-	for (int i = 1; i <= n; i ++) {
-		LL res = -1;
-		for (int j = 1; j <= cow[i] / j; j ++) {
-			if(cow[i] % j == 0) {
-				res += cnt[j] + cnt[cow[i] / j];
-				if(j == cow[i] / j) res -= cnt[j];
-			}
+	int num; cin >> num;
+	std::vector<int> res;
+	for (int i = 1; i <= num / i; i ++) {
+		if(num % i == 0) {
+			res.push_back(i);
+			if(i * i != num) res.push_back(num / i);
 		}
-		cout << res << endl;
 	}
-
-}
+	sort(res.begin(), res.end());
+	for (int i = 0; i < res.size(); i ++) cout << res[i] << " ";
+	cout << endl;
+}	
 
 int main() {
     ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-    solved();
+    int t; cin >> t; while(t --) solved();
     return 0;
 }

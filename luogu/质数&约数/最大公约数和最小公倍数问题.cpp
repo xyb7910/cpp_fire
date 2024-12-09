@@ -19,11 +19,21 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
+int cnt;
+
+int gcd(int a, int b) {
+	return b ? gcd(b, a % b) : a;
+}
 
 void solved() {
 	/* your code */
 	int x, y; cin >> x >> y;
-	
+	if(x == y) cnt --;
+	int multi = x * y;
+	for (int i = 1; i <= sqrt(multi); i ++) {
+		if(multi % i == 0 && gcd(i, multi / i) == x) cnt += 2;
+	}
+	cout << cnt;
 }
 
 int main() {

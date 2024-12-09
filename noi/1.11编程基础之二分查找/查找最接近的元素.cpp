@@ -21,6 +21,6 @@ int main() {
 				cout << num[pos] << endl;
 			}
 		}
-	}
 	return 0;
+	}
 }

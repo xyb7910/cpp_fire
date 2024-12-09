@@ -14,53 +14,66 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
+const int N = 1e7 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
 int primes[N];
 bool st[N];
-int cnt;
+int  n, cnt;
 
-int count(int k) {
-	int res = 0;
-	while(k) {
-		res += k % 10;
-		k /= 10;
+int count(int num) {
+	LL res = 0;
+	while(num) {
+		res += num % 10;
+		num /= 10;
 	}
 	return res;
 }
 
 bool is_prime(int x) {
 	if(x < 2) return false;
-	for (int i = 2; i <= x / i; i ++)
+	for (int i = 2; i <= x / i; i ++) {
 		if(x % i == 0) return false;
+	}
 	return true;
 }
 
-void get_primes(int n) {
+std::vector<int> get_primes(int n) {
 	for (int i = 2; i <= n; i ++) {
-		if(!st[i] && is_prime(count(i))) primes[cnt ++] = i;
+		if(!st[i]) primes[cnt ++] = i;
 		for (int j = 0; primes[j] * i <= n; j ++) {
 			st[primes[j] * i] = 1;
-			if(i % primes[j] == 0) break;
+			if(i % primes[j] == 1) break;
 		}
 	}
+
+	std::vector<int> res;
+	for (int i = 0; i < cnt; i ++) {
+		int j = primes[i];
+		if(is_prime(count(j))) res.push_back(j);
+	}
+	return res;
 }
+
+
 
 void solved() {
 	/* your code */
-	int l, r; cin >> l >> r;
-	int start = lower_bound(primes, primes + cnt, l) - primes;
-	int end = upper_bound(primes, primes + cnt, r) - primes;
-	// cout << start << " " << end << endl;
-	cout << end - start << endl;
+	std::vector<int> p = get_primes(1e8);
+	int t; cin >> t;
+	while (t --) {
+		int l, r;
+		cin >> l >> r;
+		l = lower_bound(p.begin(), p.end(), l) - p.begin();
+		r = upper_bound(p.begin(), p.end(), r) - p.begin();
+		cout << r - l << endl;
+	}
 }
 
 int main() {
-    get_primes(N);
     ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-   	int T; cin >> T; while(T --) solved();
+    int t; cin >> t; while(t --) solved();
     return 0;
 }

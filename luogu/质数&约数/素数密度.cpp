@@ -1,42 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+/*
+整体思路：先预处理出来1e5之内的质数，然后用筛选出来的质数把它的倍数筛去
+一定要用质数去筛，不然会违背欧拉筛的本质。
+如何确保最小呢？从前往后选择，必然最小。
+*/
 using namespace std;
-bool f[100005];
-int prime[10000],tot;
-bool flag[1000005];
-void Euler(int n)
-{
-     f[0]=f[1]=true;
-        for(int i=2;i<=n;i++)
-        {
-            if(!f[i])
-            {
-                prime[++tot]=i;
-            }
-            for(int j=1;j<=tot&&1ll*i*prime[j]<=n;j++)
-            {
-                f[i*prime[j]]=true;
-                if(i%prime[j]==0)break;
-            }
+typedef long long LL;
+const int N = 1e5 + 10;
+int primes[N], cnt;      
+bool st[N];
+void get_primes(int n) {
+    for (int i = 2; i <= n; i++) {
+        if (!st[i]) primes[cnt++] = i;
+        for (int j = 0; primes[j] * i <= n; j++) {
+            st[primes[j] * i] = true;
+            if (i % primes[j] == 0) break;
         }
+    }
 }
-int main()
-{
-    Euler(100000);
-    long long l,r;
-    cin>>l>>r;
-    for(long long i=1;i<=tot&&prime[i]*prime[i]<=r;i++){
-        long long L=(l+prime[i]-1)/prime[i]*prime[i];
-        L=max(2ll*prime[i],L);
-        for(long long j=L;j<=r;j+=prime[i]){
-            flag[j-1]=true;
-        }
+const int M = 10000010;
+int a[M];
+int main() {
+    get_primes(50000); 
+    LL L, R;
+    cin >> L >> R;
+    if (L <= 1) L = 2;
+    for (int i = 0; i < cnt; i++) {
+        LL start = max(2ll, (L - 1) / primes[i] + 1) * primes[i];
+        for (LL j = start; j <= R; j += primes[i]) a[j - L] = 1; 
     }
-    int cnt=0;
-    for(long long i=max(2ll,l);i<=r;i++){
-        if(!flag[i-l]){
-            cnt++;
-        }
-    }
-    cout<<cnt;
+    int ans = 0;
+    for (LL i = L; i <= R; i++) if (!a[i - L])ans++;
+    printf("%d", ans);
     return 0;
 }

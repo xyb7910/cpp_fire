@@ -14,32 +14,35 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
-const int N = 1e6 + 10;
+const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int cnt[N], cow[N];
+const int MOD = 1e9 + 10;
 void solved() {
 	/* your code */
 	int n; cin >> n;
-	for (int i = 1; i <= n; i ++) {
+	unordered_map<int, int> prime_cnt;
+	while(n --) {
 		int num; cin >> num;
-		cnt[num] ++;
-		cow[i] = num;
-	}
-	
-	for (int i = 1; i <= n; i ++) {
-		LL res = -1;
-		for (int j = 1; j <= cow[i] / j; j ++) {
-			if(cow[i] % j == 0) {
-				res += cnt[j] + cnt[cow[i] / j];
-				if(j == cow[i] / j) res -= cnt[j];
+		for (int i = 2; i <= num / i; i ++) {
+			while(num % i == 0) {
+				prime_cnt[i] ++;
+				num /= i;
 			}
-		}
-		cout << res << endl;
+		}	
+		if(num > 1)  prime_cnt[num] ++;
 	}
 
+	LL res = 1;
+	for (auto p : prime_cnt) {
+		LL a = p.x, b = p.y;
+		LL t = 1;
+		while(b --) t = (t * a + 1) % MOD;
+		res = res * t % MOD;
+	}
+	cout << res << endl;
 }
 
 int main() {

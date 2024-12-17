@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
+#include <stack>
 
 #define x first
 #define y second
@@ -18,20 +19,28 @@ const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-int n, c, ans;
-string s;
+
+int cnt[100];
 
 void solved() {
-	/* your code */
-    cin >> n >> s;
-    for (int i = s.size() - 1; i >= 0; i --) {
-        int tmp = 0;
-        if(s[i] >= 'A' && s[i] <= 'F') tmp = s[i] - 'A' + 10;
-        else tmp = s[i] - '0';
-        ans += tmp * pow(n, c);
-        c ++;
+    /* your code */
+    LL n; cin >> n;
+    // 先统计出来，每一位 1 的个数
+    for (int i = 1; i <= n; i ++) {
+        LL num, j = 1;
+        cin >> num;
+        while(num) {
+            cnt[j] += num % 2;
+            num /= 2;
+            j ++;
+        }
     }
-    cout << ans << endl;
+
+    LL sum = 0;
+    for (int i = 1; i <= 30; i ++) {
+        sum += cnt[i] * (n - cnt[i]) * (1 << (i - 1));
+    }
+    cout << sum << endl;
 }
 
 int main() {

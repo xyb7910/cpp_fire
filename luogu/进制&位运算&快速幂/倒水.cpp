@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
+#include <stack>
 
 #define x first
 #define y second
@@ -18,18 +19,25 @@ const int N = 1e5 + 10;
 int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
-int n, c, ans;
-string s;
+
+int lowbit(int x) {
+	return x & -x;
+}
+
+int count_one(int x) {
+	int cnt = 0;
+	for (; x; x -= lowbit(x)) cnt ++;
+	return cnt;
+}
 
 void solved() {
-	/* your code */
-    cin >> n >> s;
-    for (int i = s.size() - 1; i >= 0; i --) {
-        int tmp = 0;
-        if(s[i] >= 'A' && s[i] <= 'F') tmp = s[i] - 'A' + 10;
-        else tmp = s[i] - '0';
-        ans += tmp * pow(n, c);
-        c ++;
+    /* your code */
+    int n, k; cin >> n >> k;
+    int ans = 0;
+    while(count_one(n) > k) {
+    	int t = lowbit(n);
+    	ans += t;
+    	n += t;
     }
     cout << ans << endl;
 }

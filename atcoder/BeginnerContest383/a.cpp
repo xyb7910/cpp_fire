@@ -31,7 +31,7 @@ void solved() {
 		res += w[i];
 		int d = t[i + 1] - t[i];
 		if(d > res) {
-			res = 0;
+			res = 0;			
 		} else {
 			res -= d;
 		}

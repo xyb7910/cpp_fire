@@ -23,27 +23,21 @@ int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1}
 
 void solved() {
     /* your code */
-    int p1, p2; 
+    int n, r; cin >> n >> r;
+    int res = n;
     string s;
-    cin >> p1 >> s >> p2;
-    int n = s.size(), sum = 0, c = 0;
-    for (int i = n - 1; ~i; i --) {
-    	int t = 0;
-    	if(s[i] >= 'A' && s[i] <= 'Z') t = s[i] - 'A' + 10;
-    	else t = s[i] - '0';
-    	sum += t * pow(p1, c);
-    	c ++;
+    while(n) {
+    	int tmp = n % r;
+    	if(tmp < 0) {
+    		tmp -= r;
+    		n += r; 
+    	}
+    	if(tmp >= 10) s += tmp - 10 + 'A';
+    	else s += tmp + '0';
+    	n /= r;
     }
-
-    string ans;
-    while(sum) {
-    	int m = sum % p2;
-    	if(m >= 10) ans += m - 10 + 'A';
-    	else ans += m + '0';
-    	sum /= p2;
-    }
-    reverse(ans.begin(), ans.end());
-    for (int i = 0; i < ans.size(); i ++) cout << ans[i];
+    reverse(s.begin(), s.end());
+    cout << res << "=" << s << "(base" << r << ")" << endl; 
 }
 
 int main() {

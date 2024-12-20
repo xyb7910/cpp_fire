@@ -33,14 +33,6 @@ bool cmp(string &a, string &b) {
 
 vector<int> sub(string &a, string &b) {
 	vector<int> res;
-	bool negative = false;
-	if(!cmp(a, b)) {
-		string tmp = a;
-		a = b;
-		b = tmp;
-		negative = true;
-	}
-	cout << negative << endl;
 	int t = 0, i = a.size() - 1, j = b.size() - 1;
 
 	while(~i || ~j) {
@@ -57,8 +49,6 @@ vector<int> sub(string &a, string &b) {
 	}
 
 	while(res.size() > 1 && res.back() == 0) res.pop_back();
-
-	if(negative) res.push_back('-');
 	reverse(res.begin(), res.end());
 	return res;
 }
@@ -66,7 +56,14 @@ vector<int> sub(string &a, string &b) {
 void solved() {
     /* your code */
     string a, b; cin >> a >> b;
-    vector<int> res = sub(a, b);
+    vector<int> res;
+
+    if(cmp(a, b)) {
+    	res = sub(a, b);
+    } else {
+    	cout << "-";
+    	res = sub(b, a);
+    }
     for (auto a : res) cout << a;
 }
 

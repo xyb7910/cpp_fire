@@ -5,7 +5,7 @@
 
 using namespace std;
 
-std::vector<char> addBigNumber(int base, string &a, string &b) {
+std::vector<char> addBigNumber(int base, vector<char> &a, vector<char> &b) {
     vector<char> res;
     int t = 0, i = a.size() - 1, j = b.size() - 1;
     while(~i || ~j || t) {
@@ -36,7 +36,12 @@ bool is_pali(vector<char> a) {
     for (int i = 0; i < a.size(); i ++) {
         if(back_up[i] != a[i]) return false;
     }
-    return false;
+    return true;
+}
+
+void printS(vector<char> &s) {
+    for (auto a : s) cout << a;
+    cout << endl;
 }
 
 int main()
@@ -49,8 +54,9 @@ int main()
     reverse(A.begin(), A.end());
     int cnt = 0;
     while(!is_pali(addBigNumber(base, A, B))) {
-        cnt ++;
         A = addBigNumber(base, A, B);
+        cnt ++;
+        // printS(A);
         B = A;
         reverse(A.begin(), A.end());
         if(cnt >= 30) {
@@ -58,6 +64,6 @@ int main()
             return 0;
         }
     }
-    cout << "STEP=" << cnt << endl;
+    cout << "STEP=" << cnt + 1 << endl;
     return 0;
 }

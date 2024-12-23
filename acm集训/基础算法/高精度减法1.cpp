@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 bool cmp(vector<int> A, vector<int> B) {

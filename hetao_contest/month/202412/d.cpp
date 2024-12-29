@@ -1,54 +1,39 @@
-/*
-* @Author: Yanpb
-* @Date:   2024-12-28 08:51:05
-* @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-28 08:56:38
-*/
 #include <iostream>
 #include <cstring>
 #include <algorithm>
-#include <cmath>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-
-#define x first
-#define y second
-
+ 
 using namespace std;
-typedef long long LL;
-typedef pair<int, int> PII;
-typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
-int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
-int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-std::vector<char> res(N);
-
-void solved() {
-    /* your code */
-    int base; cin >> base;
-    for (int i = 1; i <= 300; i ++) {
-    	int num = i * i;
-    	cout << num << endl;
-    	bool f = 0;
-    	while(num) {
-    		int r = num % base;
-    		if(r > 9) res.push_back(r - 10 + 'A');
-    		else res.push_back(r + '0'); 
-    		vector<char> back_up = res;
-    		reverse(res.begin(), res.end());
-    		if(res == back_up) f = 1;
-    	}
-    	if(f) cout << i << " " <<  i * i << endl;
-    }
+char get(int x){
+    if (x <= 9) return x + '0';
+    return x - 10 + 'A';
 }
 
-int main() {
-    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-    solved();
+string base(int n, int b){
+    string num;
+    while (n) {
+        num += get(n % b);
+        n /= b;
+    }
+    reverse(num.begin(), num.end());
+    return num;
+}
+
+
+bool check(string num){
+    for (int i = 0, j = num.size() - 1; i < j; i ++, j -- )
+        if (num[i] != num[j])
+            return false;
+    return true;
+}
+
+int main(){
+    int b;
+    cin >> b;
+    for (int i = 1; i <= 300; i ++ ){
+        string num = base(i*i, b);
+        if (check(num))
+            cout << base(i, b) << ' ' << num << endl;
+    }
     return 0;
 }

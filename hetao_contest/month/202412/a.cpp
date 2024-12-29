@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-27 21:37:35
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-27 22:17:42
+* @Last Modified time: 2024-12-28 13:16:45
 */
 #include <iostream>
 using namespace std;
@@ -17,7 +17,7 @@ int main() {
 	for (int i = a.size() - 1; ~i; i --) A[l1 ++] = a[i] - '0';
 	for (int i = b.size() - 1; ~i; i --) B[l2 ++] = b[i] - '0';
 
-	int l = max(a.size(), b.size()) + 1;
+	int l = max(a.size(), b.size());
 	for (int i = 0; i < l; i ++) {
 		C[i] = A[i] + B[i];
 	}
@@ -26,7 +26,7 @@ int main() {
 		C[i + 1] = C[i + 1] + C[i] / 10;
 		C[i] = C[i] % 10;
 	}
-
+	if(C[l]) l ++;
 	while(C[l] ==  0 && l > 0) l --;
 	for (int i = l; i >= 0; i --) cout << C[i];
 	return 0;

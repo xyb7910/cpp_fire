@@ -1,9 +1,10 @@
 /*
 * @Author: Yanpb
-* @Date:   2024-12-28 09:52:52
+* @Date:   2024-12-28 14:21:32
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-28 12:58:40
+* @Last Modified time: 2024-12-28 14:30:21
 */
+// 进制转换 + 回文
 #include <iostream>
 #include <cstring>
 #include <algorithm>
@@ -12,13 +13,12 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
-#include <stack>
 
 #define x first
 #define y second
 
 using namespace std;
-typedef long long LL;
+typedef long long i64;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
 const int N = 1e5 + 10;
@@ -26,18 +26,37 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-LL gcd(LL a, LL b) {
-	return b ? gcd(b, a % b) : a;
+char get(int x) {
+	if(x <= 9) return x + '0';
+	return x - 10 + 'A';
+}
+
+string base(int n, int b) {
+	string num;
+	while(n) {
+		num += get(n % b);
+		n /= b;
+	}
+	reverse(num.begin(), num.end());
+	return num;
+}
+
+bool check(string num) {
+	for (int i = 0, j = num.size() - 1; i < j; i ++, j --)
+		if(num[i] != num[j])
+			return false;
+	return true;
 }
 
 void solved() {
-    /* your code */
-    LL n, res; cin >> n >> res;
-    for (int i = 1; i < n; i ++) {
-    	LL a; cin >> a;
-    	res = res / gcd(res, a) * a;
-    }
-    cout << res << endl;
+	/* your code */
+	int b; cin >> b;
+	for (int i = 1; i <= 300; i ++) {
+		string num = base(i * i, b);
+		if(check(num)) {
+			cout << base(i, b) << " " << num << endl;
+		}
+	}
 }
 
 int main() {

@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-29 16:26:33
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-29 16:52:13
+* @Last Modified time: 2025-01-02 13:48:29
 */
 //  P1217 回文数字 + 质数判断
 
@@ -60,7 +60,6 @@ void get_primes(int n) {
 void solved() {
 	/* your code */
 	int a, b; cin >> a >> b;
-	a = max(a, 2);
 	get_pali(a, b);
 	get_primes(b);
 	for (int i = 0; i < cnt; i ++) {

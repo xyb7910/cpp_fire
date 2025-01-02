@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-31 11:33:43
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-31 17:11:37
+* @Last Modified time: 2025-01-02 16:19:45
 */
 #include <iostream>
 #include <cstring>
@@ -26,11 +26,26 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
+int res[N] = {1};
 
 void solved() {
     /* your code */
-    
-}
+    int n; cin >> n;
+    int cnt = 1;
+    for (int k = 0; k < n; k ++) {
+        for (int i = 0; i < cnt; i ++)
+            res[i] *= 2;
+
+        for (int i = 0; i < cnt; i ++) {
+            res[i + 1] += res[i] / 10;
+            res[i] %= 10;
+        }
+
+        if(res[cnt]) cnt ++;
+    }
+    res[0] -= 1;
+    for (int i = cnt - 1; i >= 0; i --) cout << res[i];
+} 
 
 int main() {
     ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);

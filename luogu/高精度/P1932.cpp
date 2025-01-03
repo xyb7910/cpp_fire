@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-02 13:50:16
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-02 21:09:54
+* @Last Modified time: 2025-01-03 15:26:42
 */
 // 计算和，差，积，商，余
 
@@ -90,7 +90,7 @@ void div(int A[], int B[], int l) {
 
 		// 向一个数后面追加 0
 		for (int j = 0; j < l; j ++)  
-	}
+	
 }
 
 void solved() {

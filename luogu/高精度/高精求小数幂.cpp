@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-02 16:20:02
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-02 21:09:56
+* @Last Modified time: 2025-01-03 15:08:22
 */
 #include <iostream>
 #include <cstring>
@@ -45,26 +45,21 @@ void solved() {
 		}
 
 		for (int i = 0; i < l; i ++) B[i] = A[i];
-
+		int la = l;
 		for (int k = 1; k < b; k ++) {
-			len = l * 2, l = len;
-			for (int i = 0; i < l; i ++)
+			
+			for (int i = 0; i < la; i ++)
 				for (int j = 0; j < l; j ++)
 					ans[i + j] += A[i] * B[j];
 			
-
-			for (int i = 0; i < len; i ++) {
+			len = l * (k + 1), l = len;
+			for (int i = 0; i < len; i ++) {	
 				ans[i + 1] += ans[i] / 10;
 				ans[i] %= 10;
 			} 
-
 			while(ans[len] == 0 && len > 0) len --;
 
-			for (int i = 0; i < len; i ++) B[i] = ans[i];
-
-			for (int i = 0; i < len; i ++) cout << B[i];
-
-			cout << endl;
+			for (int i = 0; i <= len; i ++) B[i] = ans[i];
 		}
 
 		for (int i = len, cnt = 1; i >= 0; i --, cnt ++) {

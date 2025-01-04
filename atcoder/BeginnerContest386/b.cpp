@@ -1,8 +1,8 @@
 /*
 * @Author: Yanpb
-* @Date:   2025-01-03 21:37:46
+* @Date:   2025-01-04 17:09:39
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-04 15:12:22
+* @Last Modified time: 2025-01-04 18:33:39
 */
 #include <iostream>
 #include <cstring>
@@ -25,26 +25,19 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int s[N];
-int a[7], b[7];
+i64 res;
 
 void solved() {
 	/* your code */
-	int n; cin >> n;
-	for (int i = 1; i <= n; i ++) {
-		cin >> s[i];
-		s[i] = (s[i - 1] + s[i]) % 7;
+	string s; cin >> s;
+	for (int i = s.size() - 1; i >= 0; ) {
+		if(s[i] == '0' && s[i - 1] == '0') {
+			i -= 2;
+		} else {
+			i --;
+		}
+		res ++;
 	}
-
-	for (int i = n; i >= 1; i --) a[s[i]] = i;
-	a[0] = 0;
-	for (int i = 1; i <= n; i ++) b[s[i]] = i;
-
-	int res = -1;
-	for (int i = 0; i <= 6; i ++) {
-		res = max(res, b[i] - a[i]);
-	}
-	
 	cout << res << endl;
 }
 

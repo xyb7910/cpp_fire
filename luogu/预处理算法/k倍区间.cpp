@@ -1,8 +1,8 @@
 /*
 * @Author: Yanpb
-* @Date:   2025-01-03 21:37:46
+* @Date:   2025-01-04 15:14:40
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-04 15:12:22
+* @Last Modified time: 2025-01-04 16:31:31
 */
 #include <iostream>
 #include <cstring>
@@ -25,27 +25,23 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int s[N];
-int a[7], b[7];
+i64 res[N] = {1};
+i64 ans;
+int rem;
 
 void solved() {
 	/* your code */
-	int n; cin >> n;
-	for (int i = 1; i <= n; i ++) {
-		cin >> s[i];
-		s[i] = (s[i - 1] + s[i]) % 7;
+	// 倍数意味着与 0 同余
+	int n, k; cin >> n >> k;
+	for (int i = 0; i < n; i ++) {
+		int num; cin >> num;
+		rem += num;
+		res[rem % k] ++;
+		rem %= k;
 	}
 
-	for (int i = n; i >= 1; i --) a[s[i]] = i;
-	a[0] = 0;
-	for (int i = 1; i <= n; i ++) b[s[i]] = i;
-
-	int res = -1;
-	for (int i = 0; i <= 6; i ++) {
-		res = max(res, b[i] - a[i]);
-	}
-	
-	cout << res << endl;
+	for (int i = 0; i < k; i ++) ans += res[i] * (res[i] - 1) / 2;
+	cout << ans << endl;
 }
 
 int main() {

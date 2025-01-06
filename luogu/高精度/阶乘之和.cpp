@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-31 11:14:33
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-31 11:30:33
+* @Last Modified time: 2025-01-06 19:39:25
 */
 #include <iostream>
 #include <cstring>
@@ -57,7 +57,6 @@ void solved() {
     		ans[j] %= 10;
     	}
     	if(ans[l]) l ++;
-
     }
 
     for (int i = l - 1; ~i; i --) cout << ans[i];

@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-30 21:33:14
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-31 11:03:41
+* @Last Modified time: 2025-01-06 14:22:55
 */
 #include <iostream>
 #include <cstring>
@@ -18,7 +18,7 @@
 #define y second
 
 using namespace std;
-typedef long long LL;
+typedef long long i64;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
 const int N = 1e5 + 10;
@@ -26,7 +26,7 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-LL res[100] = {1};
+i64 res[100] = {1};
 void solved() {
     /* your code */
     int n; cin >> n;

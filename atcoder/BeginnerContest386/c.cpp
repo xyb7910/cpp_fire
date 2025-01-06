@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-04 17:56:37
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-04 18:33:49
+* @Last Modified time: 2025-01-06 19:39:37
 */
 #include <iostream>
 #include <cstring>
@@ -28,6 +28,7 @@ int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1}
 
 void solved() {
 	/* your code */
+
 }
 
 int main() {

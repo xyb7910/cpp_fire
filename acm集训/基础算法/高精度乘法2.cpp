@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2024-12-30 11:21:09
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2024-12-31 16:18:05
+* @Last Modified time: 2025-01-06 16:33:58
 */
 // 高精度 ✖️ 高精度
 
@@ -20,7 +20,7 @@
 #define y second
 
 using namespace std;
-typedef long long LL;
+typedef long long i64;
 typedef pair<int, int> PII;
 typedef pair<double, double> PDD;
 const int N = 1e5 + 10;
@@ -28,7 +28,7 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-int A[N], B[N], C[N], l1, l2;
+i64 A[N], B[N], C[N], l1, l2;
 
 void solved() {
     /* your code */
@@ -44,7 +44,7 @@ void solved() {
     		C[dis] += A[i] * B[j];
     	}
 
-    // 寻找第一个非零元素
+   
   	// 最大的可能位数为 n + m
     int l = n + m;
     for (int i = 0; i < l; i ++) {
@@ -52,10 +52,10 @@ void solved() {
         C[i] %= 10;
     }
     		
-    	
-    while(l > 0 && C[l] == 0) l --;
+    // 寻找第一个非零元素	
+    while(l > 1 && C[l - 1] == 0) l --;
 
-    for (int i = l; ~i; i --) cout << C[i];
+    for (int i = l - 1; ~i; i --) cout << C[i];
 }
 
 int main() {

@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-03 13:59:52
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-03 14:47:02
+* @Last Modified time: 2025-01-07 22:32:07
 */
 #include <iostream>
 #include <cstring>
@@ -34,7 +34,7 @@ void solved() {
 	while(n --) {
 		cin >> s;
 		for (int i = 0; i < s.size(); i ++) {
-			char c = s[i] + (r + 26) % 26;
+			char c = s[i] + r % 26;
 			if(c >= 'A' && c <= 'Z') s[i] = c;
 			else s[i] = c - 'Z' - 1 + 'A';
 		}

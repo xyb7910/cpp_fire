@@ -1,79 +1,68 @@
-/*
-* @Author: Yanpb
-* @Date:   2025-01-02 16:20:02
-* @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-03 15:08:22
-*/
 #include <iostream>
 #include <cstring>
 #include <algorithm>
-#include <cmath>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-
-#define x first
-#define y second
 
 using namespace std;
-typedef long long i64;
-typedef pair<int, int> PII;
-typedef pair<double, double> PDD;
+
 const int N = 1e5 + 10;
-int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
-int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-string a;
+string s;
+int b, l, cnt, len1, len2, len_s;
 int A[N], B[N], ans[N];
-int b, l, len;
 
-void solved() {
-	/* your code */
-	// while(cin >> a >> b) {
-		cin >> a >> b;
-		if(b == 1) {
-			cout << a;
-			return ;
-		}
+void multiply(int x) {
+    len1 = cnt, len2 = cnt;
+    for (int k = 1; k < x; k ++) {
+        memset(ans, 0, sizeof ans);
 
-		int n = a.size(), pos = a.find('.');
-		for (int i = n - 1; i >= 0; i --) {
-			if(a[i] == '.') continue;
-			A[l ++] = a[i] - '0';
-		}
+        for (int i = 0; i < len1; i ++)
+            for (int j = 0; j < len2; j ++)
+                ans[i + j] += A[i] * B[j];
+        
+        len_s = len1 + len2;
+        for (int i = 0; i < len_s; i ++) {
+            ans[i + 1] += ans[i] / 10;
+			ans[i] %= 10;
+        }
 
-		for (int i = 0; i < l; i ++) B[i] = A[i];
-		int la = l;
-		for (int k = 1; k < b; k ++) {
-			
-			for (int i = 0; i < la; i ++)
-				for (int j = 0; j < l; j ++)
-					ans[i + j] += A[i] * B[j];
-			
-			len = l * (k + 1), l = len;
-			for (int i = 0; i < len; i ++) {	
-				ans[i + 1] += ans[i] / 10;
-				ans[i] %= 10;
-			} 
-			while(ans[len] == 0 && len > 0) len --;
-
-			for (int i = 0; i <= len; i ++) B[i] = ans[i];
-		}
-
-		for (int i = len, cnt = 1; i >= 0; i --, cnt ++) {
-			if(cnt == (n - pos - 1) * 2 - 1) cout << ".";
-			cout << ans[i];
-		}
-		cout << endl;
-
-	// }
-	
+        for (int i = 0; i < len_s; i ++) A[i] = ans[i];
+        len1 = len_s; 
+    }
 }
 
 int main() {
-    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-    solved();
+    while(cin >> s >> b) {
+        // 先存
+        memset(A, 0, sizeof A);
+        memset(B, 0, sizeof B);
+        bool flag = 0;
+        l = 0, cnt = 0; // l 表示小数点后有多少位， cnt 表示数字的位数
+        for (int i = s.size() - 1; ~i; i --) {
+            if(s[i] == '.') flag = 1;
+            else {
+                A[cnt ++] = s[i] - '0';
+                B[cnt - 1] = A[cnt - 1];   
+            }
+            if(!flag) l ++;
+        }
+        
+        int i = 0;
+        while(A[i] == 0 && i <= l) {
+            i ++, l --;
+        } 
+        
+        l *= b;
+        multiply(b);
+        while(A[len_s - 1] == 0) len_s --;
+        i = 0;
+        while(A[i] == 0) i ++;
+        string s1;
+        while((len_s - 1) >= i || l > 0) {
+            s1 = char(A[i] + '0') + s1;
+            i ++, l --;
+            if(!l) s1 = '.' + s1;
+        }
+        cout << s1 << endl;
+    }
     return 0;
 }

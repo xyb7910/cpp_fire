@@ -1,8 +1,8 @@
 /*
 * @Author: Yanpb
-* @Date:   2025-01-03 13:59:52
+* @Date:   2025-01-09 13:32:09
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-09 13:30:36
+* @Last Modified time: 2025-01-09 13:49:09
 */
 #include <iostream>
 #include <cstring>
@@ -25,37 +25,35 @@ int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
 int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-string s;
-int A[N];
+int res[N];
 
 void solved() {
 	/* your code */
-	int n, r; cin >> n >> r;
-	while(n --) {
-		cin >> s;
-		for (int i = 0; i < s.size(); i ++) {
-			char c = s[i] + r % 26;
-			if(c >= 'A' && c <= 'Z') s[i] = c;
-			else s[i] = c - 'Z' - 1 + 'A';
-		}
-		cout << s << endl;
-		int l1 = 0, num = s[0];
-		A[l1] = num % 10, A[++ l1] = num / 10;
-		for (int q = 1; q < s.size(); q ++) {
-			int b = s[q];
-			for (int i = 0; i <= l1; i ++)
-				A[i] *= b;
-			l1 += log10(b) + 1;
-			for (int i = 0; i <= l1; i ++) {
-				A[i + 1] += A[i] / 10;
-				A[i] %= 10;
+	int t; cin >> t;
+	while(t -- ) {
+		memset(res, 0, sizeof(res));
+		res[0] = 1;
+		int n, m; cin >> n >> m;
+		int k = 1;
+		for (int i = 1; i <= n; i ++) {
+			for (int j = 0; j < k; j ++) res[j] *= i;
+			for (int j = 0; j < k - 1; j ++) {
+				res[j + 1] += res[j] / 10;
+				res[j] %= 10;
 			}
-			while(A[l1] == 0 && l1 > 0) l1 --;
+			while(res[k - 1] > 9) {
+				res[k] = res[k - 1] / 10;
+				res[k - 1] %= 10;
+				k ++;
+			}
 		}
-		for (int i = l1; i >= 0; i --) cout << A[i];
-		cout << endl;
-		memset(A, 0, sizeof(A));
+		int cnt = 0;
+		for (int i = 0; i < k; i ++)
+			if(res[i] == m) cnt ++;
+		cout << cnt << endl;
 	}
+	
+
 }
 
 int main() {

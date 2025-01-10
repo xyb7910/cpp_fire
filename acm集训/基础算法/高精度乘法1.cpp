@@ -1,6 +1,9 @@
 // 使用数组模拟高精度乘法：
 //  高精度数字乘单精度数字
 #include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <cmath>
 
 using namespace std;
 const int N = 1e5 + 10;

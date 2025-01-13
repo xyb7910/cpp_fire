@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-12 22:25:25
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-12 22:46:48
+* @Last Modified time: 2025-01-13 20:22:38
 */
 #include <iostream>
 #include <cstring>
@@ -19,7 +19,7 @@ int l, cnt, len1, len2, len_s; // l 表示 小数点后的位数， cnt 表示A�
 void mutilply(int b) {
 	// 两个数组的长度 ==> 两个数字有多少位
 	len1 = cnt, len2 = cnt;
-	for (int k = 1; k < b; k ++) {
+	for (int k = 1; k < b; k ++) { // k 为计算次数
 		// 清空ans数组
 		memset(ans, 0, sizeof ans);
 
@@ -43,7 +43,7 @@ void mutilply(int b) {
 
 int main() {
 	// while(scanf("%s %d", s, b) == 2) {
-
+	// scnaf 返回值是 参数个数
 	// }
 	while(cin >> s >> b) {
 		// 先考虑存储

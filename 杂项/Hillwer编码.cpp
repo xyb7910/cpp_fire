@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-11 15:28:43
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-11 15:42:48
+* @Last Modified time: 2025-01-13 19:37:05
 */
 #include <iostream>
 #include <cstring>
@@ -35,7 +35,7 @@ void solved() {
 		cin >> s;
 		// 先处理中转码
 		for (int i = 0 ; i < s.size(); i ++) {
-			char c = s[i] + (r + 26) % 26;
+			char c = s[i] + r % 26;
 			if(c >= 'A' && c <= 'Z') s[i] = c;
 			else s[i] = c - 'Z' - 1 + 'A';
 		}
@@ -55,6 +55,7 @@ void solved() {
 			}
 			while(A[l1] == 0 && l1 > 0) l1 --;
 		}
+		// ~i ==> i >= 0 
 		for (int i = l1; ~i; i--) cout << A[i];
 		cout << endl;
 		memset(A, 0, sizeof A);

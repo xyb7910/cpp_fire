@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-08 00:30:50
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-08 13:49:07
+* @Last Modified time: 2025-01-16 18:33:52
 */
 #include <iostream>
 #include <cstring>
@@ -41,7 +41,7 @@ void solved() {
     	if(res[k]) k ++;
     }
     int odd_cnt = 0;
-    for (int i = 0; i < k; i ++) if(res[i] % 2) odd_cnt ++;
+    for (int i = 0; i < k; i ++) if(res[i] & 1) odd_cnt ++;
     cout << odd_cnt * 2 - k;
 }
 

@@ -1,57 +1,49 @@
-/*
-* @Author: Yanpb
-* @Date:   2025-01-15 12:30:46
-* @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-15 15:29:18
-*/
 #include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <cmath>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <set>
-
-#define x first
-#define y second
+#include <string>
 
 using namespace std;
-typedef long long LL;
-typedef pair<int, int> PII;
-typedef pair<double, double> PDD;
-const int N = 1e5 + 10;
-int dx4[4] = {-1, 0, 1, 0}, dy4[4] = {0, 1, 0, -1};
-int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
-int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-
-
-
-void solved() {
-    /* your code */
-    unordered_map<char, int> cnt1, cnt2;
-    set<char> s;
-    string a, b; cin >> a >> b;
-    // 确保 b 最长
-    if(a.size() > b.size()) swap(a, b);
-    for (int i = 0; i < a.size(); i ++) cnt1[a[i]] ++;
-    for (int i = 0; i < b.size(); i ++) {
-    	cnt2[b[i]] ++;
-    	s.insert(b[i]);	
+bool isSimilar(string& str1, string& str2) {
+    int len1 = str1.size();
+    int len2 = str2.size();
+    int diff = 0;
+    if (abs(len1 - len2) > 1) {
+        return false;
     }
-
-    int res = 0;
-	for (auto c : s) {
-		if(cnt1[c] != cnt2[c]) res ++;
-	}
-	puts(res > 1 ? "not similar" : "similar");
+    int i = 0, j = 0;
+    while (i < len1 && j < len2) {
+        if (str1[i]!= str2[j]) {
+            diff++;
+            if (len1 > len2) {
+                i++;
+            } else if (len1 < len2) {
+                j++;
+            } else {
+                i++;
+                j++;
+            }
+            if (diff > 1) {
+                return false;
+            }
+        } else {
+            i++;
+            j++;
+        }
+    }
+    return true;
 }
 
 int main() {
-    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-    int t; cin >> t; while(t --) solved();
+    int T;
+    cin >> T;
+    while (T--) {
+        string str1, str2;
+        cin >> str1 >> str2;
+        if (isSimilar(str1, str2)) {
+            cout << "similar" << endl;
+        } else {
+            cout << "not similar" << endl;
+        }
+    }
     return 0;
 }

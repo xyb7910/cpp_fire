@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-01-24 22:02:30
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-01-24 22:03:02
+* @Last Modified time: 2025-01-25 12:50:33
 */
 #include <iostream>
 #include <cstring>
@@ -15,6 +15,8 @@ using namespace std;
 
 /*
 每次 bfs 可以求出一个连通块的大小 area
+
+需要注意四连通分量一定要是{西，北，东，难}；
 */
 const int N = 55, M = N * N;
 
@@ -30,18 +32,18 @@ int bfs(int sx, int sy) {
     q[0] = {sx, sy};
     st[sx][sy] = 1;
     int area = 0;
-    int dx[4] = {1, -1, 0, 0}, dy[4] = {0 ,0, -1, 1};
-    
+    int dx[4] = {0, -1, 0, 1}, dy[4] = {-1, 0, 1, 0};
+
     while(hh <= tt) {
         // 出队
         auto t = q[hh ++];
         area ++;
-        
+
         for (int i = 0; i < 4; i ++) {
             int a = t.x + dx[i], b = t.y + dy[i];
             if(a < 0 || a >= n || b < 0 || b >= m) continue;
             if(st[a][b] || g[t.x][t.y] >> i & 1) continue;
-            
+
             q[++ tt] = {a, b};
             st[a][b] = 1;
         }    
@@ -55,7 +57,7 @@ int main() {
         for (int j = 0; j < m; j ++) {
             cin >> g[i][j];
         }
-        
+
     int area = 0, cnt = 0; // 分别表示最大的面积 和 房间的数量
     for (int i = 0; i < n; i ++)
         for (int j = 0; j < m; j ++) {

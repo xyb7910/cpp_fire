@@ -9,8 +9,8 @@ int a[N], b[N];
 int ans_a, ans_b; 
 int main() {
     cin >> n >> n_a >> n_b;
-    for (auto& e : a) cin >> e;
-    for (auto& e : b) cin >> e;
+    for (int i = 0; i < n_a; i ++) cin >> a[i];
+    for (int i = 0; i < n_b; i ++) cin >> b[i];
     for (int i = 0; i < n; i ++) {
         int p = a[i % n_a], q = b[i % n_b];
         // 两个人的拳一样

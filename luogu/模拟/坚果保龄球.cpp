@@ -14,14 +14,16 @@ const int N = 2010, M = 1e5 + 10;
 */
 int n;
 PII pos[N];
-set<PII> res;
+set<string> res;
 
 int main() {
     cin >> n;
     for (int i = 0; i < n; i ++) cin >> pos[i].x >> pos[i].y;
     sort(pos, pos + n);
     for (int i = 0; i < n; i ++) {
-        res.insert({pos[i].x, (pos[i].y + 1) / 60});
+        char s1 = (pos[i].x - '0');
+        char s2 = s1 + ((pos[i].y + 1 - '0') / 60 - '0');
+        res.insert(s2);
     }
     cout << res.size();
     return 0;

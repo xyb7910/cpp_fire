@@ -8,7 +8,7 @@
 
 using namespace std;
 typedef pair<int, int> PII;
-const int N = 2010;
+const int N = 2010, M = 1e5 + 10;
 /*
 输入 所在的行数 && 所出现的时间
 */

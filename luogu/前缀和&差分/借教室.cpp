@@ -1,8 +1,8 @@
 /*
 * @Author: Hetao
 * @Date:   2025-03-06 15:07:16
-* @Last Modified by:   Hetao
-* @Last Modified time: 2025-03-06 16:30:07
+* @Last Modified by:   Yanpb
+* @Last Modified time: 2025-03-09 13:32:49
 */
 #include <iostream>
 #include <cstdio>
@@ -46,7 +46,7 @@ bool check(int mid) {
 
 void solved() {
 	/* your code */
-	cin >> n >> m;
+	scanf("%d%d", &n, &m);
 	for (int i = 1; i <= n; i ++) scanf("%d", &w[i]);
 	for (int i = 1; i <= m; i ++) scanf("%d%d%d", &d[i], &s[i], &t[i]);
 
@@ -57,6 +57,7 @@ void solved() {
 		if(check(mid)) l = mid;
 		else r = mid - 1;
 	}	
+	
 	if(r == m) puts("0");
 	else printf("-1\n%d", r + 1);
 }

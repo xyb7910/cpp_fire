@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-03-20 20:21:40
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-03-20 20:46:52
+* @Last Modified time: 2025-03-20 21:04:01
 */
 #include <iostream>
 #include <cstring>
@@ -64,7 +64,7 @@ void solved() {
 		for (int j = 1; j <= m; j ++)
 			 std::cin >> map[i][j];
 
-	// bfs();
+	bfs();
 
 	for (int i = 1; i <= n; i ++) {
 		for (int j = 1; j <= m; j ++) {

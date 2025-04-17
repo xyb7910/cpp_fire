@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-04-05 14:41:28
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-04-05 14:43:15
+* @Last Modified time: 2025-04-16 11:06:52
 */
 #include <iostream>
 #include <cstring>
@@ -26,8 +26,25 @@ int dx8[8] = {-1, -1, -1, 0, 1, 1, 1, 0}, dy8[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 int dxr[8] = {-2, -1, 1, 2, 2, 1, -1, -2}, dyr[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
 
+int n, p;
+priority_queue<int> heap[10];
+
 void solved() {
 	/* your code */
+    cin >> n >> p;
+    int cnt = 0;
+    for (int i = 0; i < n; i ++) {
+        int id, pos; cin >> id >> pos;
+        while(heap[id].size() && heap[id].top() > pos) {
+            heap[id].pop(); 
+            cnt ++;
+        } 
+        if(heap[id].size() == 0 || heap[id].top() != pos) {
+            heap[id].push(pos); 
+            cnt ++;
+        } 
+    }
+    cout << cnt;
 }
 
 int main() {

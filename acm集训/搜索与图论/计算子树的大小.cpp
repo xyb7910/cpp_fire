@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-04-16 00:25:37
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-04-16 00:30:23
+* @Last Modified time: 2025-04-17 16:04:32
 */
 #include <iostream>
 #include <vector>
@@ -11,7 +11,9 @@ using namespace std;
 const int N = 1e5 + 10;
 vector<int> e[N];
 int size[N];
-
+/*
+可以理解为先分封，再集权
+*/
 void dfs(int u) {
 	size[u] = 1;
 	for (int i = 0; i < e[u].size(); i ++) {

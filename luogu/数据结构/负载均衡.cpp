@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-04-13 15:35:40
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-04-13 15:41:22
+* @Last Modified time: 2025-04-17 13:26:36
 */
 #include <iostream>
 #include <cstring>
@@ -37,7 +37,7 @@ void solved() {
 	while(m --) {
 		int a, b, c, d;
 		cin >> a >> b >> c >> d;
-		while(q[b].size()  && q[b].top().x  <= a) {
+		while(q[b].size() && q[b].top().x <= a) {
 			s[b] += q[b].top().y;
 			q[b].pop();
 		}

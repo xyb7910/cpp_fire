@@ -2,7 +2,7 @@
 * @Author: Yanpb
 * @Date:   2025-04-25 13:21:52
 * @Last Modified by:   Yanpb
-* @Last Modified time: 2025-04-25 16:30:37
+* @Last Modified time: 2025-04-27 14:31:30
 */
 #include <iostream>
 #include <vector>
@@ -19,12 +19,10 @@ int main() {
     
     int min_time = 0, max_time = 0;
     for (int a : x) {
-        // 计算当前车的最短时间（选左或右中较小值）
         int cur_min = min(a, L - a);
         if (cur_min > min_time) {
             min_time = cur_min;
         }
-        // 计算当前车的最长时间（选左或右中较大值）
         int cur_max = max(a, L - a);
         if (cur_max > max_time) {
             max_time = cur_max;
